@@ -44,7 +44,6 @@ xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
-  sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
 fi
@@ -234,15 +233,6 @@ for DIR in ags btop cava fastfetch hypr kitty Kvantum qt5ct qt6ct rofi swappy sw
     BACKUP_DIR=$(get_backup_dirname)
     mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
     echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
-  fi
-done
-
-for DIRw in wallpapers; do 
-  DIRPATH=~/Pictures/"$DIRw"
-  if [ -d "$DIRPATH" ]; then 
-    echo "${NOTE} - Wallpapers in $DIRw found, attempting to create back up."
-    cp -r "$DIRPATH" "$DIRPATH-backup" 2>&1 | tee -a "$LOG"
-    echo "${NOTE} - Backed up $DIRw to $DIRPATH-backup"
   fi
 done
 
