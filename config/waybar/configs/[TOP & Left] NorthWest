@@ -42,6 +42,7 @@
 	"group/audio",
 	"custom/separator#blank_2",
   	"keyboard-state",
+  	"custom/nightlight",
   	"custom/power",
     ],
 },
@@ -80,6 +81,7 @@
 	"group/notify",
     "tray",
     "custom/light_dark",
+    "custom/nightlight",
     ],
     
 }]
